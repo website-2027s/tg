@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VIP Channels — Shop</title>
+<meta name="theme-color" content="#130C18">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#130C18;
+    --bg-2:#1D1325;
+    --card:#211629;
+    --ink:#1A1022;
+    --gold:#D9B76E;
+    --gold-hi:#F3DDA4;
+    --cream:#F7EEDA;
+    --text:#F4ECDD;
+    --muted:#B7A9BF;
+    --line:rgba(217,183,110,.28);
+    --display:"Cormorant", "Georgia", "Times New Roman", serif;
+    --body:"Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *,*::before,*::after{box-sizing:inherit;margin:0}
+  html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+  body{
+    min-height:100vh;
+    font-family:var(--body);
+    color:var(--text);
+    background:
+      radial-gradient(900px 500px at 50% -10%, rgba(217,183,110,.16), transparent 70%),
+      radial-gradient(700px 600px at 100% 100%, rgba(120,60,140,.22), transparent 70%),
+      var(--bg);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:880px;margin:0 auto;padding:48px 20px 64px}
+
+  header{text-align:center;margin-bottom:40px}
+  .crest{width:44px;height:44px;margin:0 auto 14px;color:var(--gold)}
+  h1{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(2.4rem,7vw,4rem);
+    line-height:1;
+    letter-spacing:.01em;
+    background:linear-gradient(180deg,var(--gold-hi),var(--gold) 60%,#A9843F);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .sub{color:var(--muted);margin-top:12px;font-size:.95rem}
+
+  /* ---------- Ticket cards ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(12px,3vw,28px);
+  }
+  .ticket{
+    position:relative;
+    display:flex;flex-direction:column;
+    min-height:clamp(340px,70vw,520px);
+    padding:clamp(16px,3.5vw,32px) clamp(14px,3vw,28px);
+    border-radius:18px;
+    background:
+      linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,0) 40%),
+      var(--card);
+    border:1px solid var(--line);
+    box-shadow:0 30px 60px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06);
+    text-align:center;
+    overflow:hidden;
+  }
+  .ticket.featured{
+    border-color:rgba(217,183,110,.6);
+    background:
+      linear-gradient(160deg,rgba(217,183,110,.14),rgba(217,183,110,0) 45%),
+      var(--card);
+  }
+  .pkg{font-size:clamp(.72rem,1.8vw,.85rem);font-weight:600;color:var(--gold);letter-spacing:.08em}
+  .count{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(4.2rem,15vw,8.5rem);
+    line-height:.9;
+    margin-top:clamp(6px,2vw,14px);
+    color:var(--cream);
+  }
+  .count-label{font-size:clamp(.78rem,2vw,1rem);font-weight:600;color:var(--text);margin-top:6px}
+
+  .tear{
+    position:relative;
+    margin:auto calc(-1 * clamp(14px,3vw,28px)) 0;
+    padding-top:clamp(16px,4vw,28px);
+  }
+  .tear span{display:block;margin:0 18px;border-top:1.5px dashed var(--line)}
+  .tear::before,.tear::after{
+    content:"";position:absolute;bottom:0;width:22px;height:22px;border-radius:50%;
+    background:var(--bg);border:1px solid var(--line);transform:translateY(50%);
+  }
+  .tear::before{left:-12px}
+  .tear::after{right:-12px}
+  .featured .tear::before,.featured .tear::after{border-color:rgba(217,183,110,.6)}
+  .lower{padding-top:clamp(16px,4vw,26px)}
+  .price{
+    font-family:var(--display);font-weight:600;
+    font-size:clamp(1.7rem,5.5vw,2.8rem);line-height:1;color:var(--gold-hi);
+  }
+  .price small{font-family:var(--body);font-size:.4em;font-weight:500;color:var(--muted);display:block;margin-top:6px;letter-spacing:.04em}
+
+  .buy{
+    margin-top:clamp(14px,3vw,22px);
+    width:100%;min-height:48px;
+    border:0;border-radius:12px;cursor:pointer;
+    font:600 clamp(.85rem,2.2vw,1rem) var(--body);
+    color:var(--ink);
+    background:linear-gradient(180deg,var(--gold-hi),var(--gold));
+    box-shadow:0 10px 24px -10px rgba(217,183,110,.7);
+    transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  }
+  .buy:hover{filter:brightness(1.06);box-shadow:0 14px 28px -10px rgba(217,183,110,.85)}
+  .buy:active{transform:scale(.97)}
+  .buy:focus-visible,.btn:focus-visible,.close:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px}
+
+  /* ---------- Inclusions ---------- */
+  .inclusions{
+    margin-top:clamp(28px,6vw,48px);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:clamp(20px,4vw,32px);
+    background:rgba(33,22,41,.6);
+  }
+  .inclusions h2{
+    font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,4.5vw,2.2rem);
+    color:var(--gold-hi);text-align:center;margin-bottom:18px;
+  }
+  .inc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,3vw,24px)}
+  .inc-col h3{font-size:.95rem;font-weight:600;color:var(--gold);margin-bottom:10px}
+  .inc-col ul{list-style:none;padding:0;display:grid;gap:8px;max-width:520px;margin:0 auto}
+  .inc-col li{
+    position:relative;padding-left:22px;font-size:.92rem;color:var(--text);
+  }
+  .inc-col li::before{
+    content:"";position:absolute;left:0;top:.45em;width:10px;height:10px;
+    border:1.5px solid var(--gold);transform:rotate(45deg);
+  }
+
+  footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:40px}
+
+  /* ---------- Modal ---------- */
+  .modal{
+    position:fixed;inset:0;z-index:50;
+    display:flex;align-items:center;justify-content:center;
+    padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));
+    background:rgba(10,6,12,.72);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    opacity:0;visibility:hidden;
+    transition:opacity .25s ease, visibility .25s;
+  }
+  .modal.open{opacity:1;visibility:visible}
+  .sheet{
+    position:relative;
+    width:min(400px,100%);
+    max-height:100%;overflow:auto;
+    border-radius:22px;
+    padding:28px 22px 22px;
+    background:linear-gradient(170deg,#2A1C33,var(--card) 50%);
+    border:1px solid rgba(217,183,110,.5);
+    box-shadow:0 40px 80px -20px rgba(0,0,0,.8);
+    text-align:center;
+    transform:translateY(18px) scale(.97);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .modal.open .sheet{transform:none}
+  .close{
+    position:absolute;top:10px;right:10px;width:44px;height:44px;
+    border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer;
+    display:grid;place-items:center;
+  }
+  .close:hover{color:var(--text);background:rgba(255,255,255,.06)}
+  .sheet h3{font-family:var(--display);font-weight:600;font-size:1.9rem;line-height:1.1;color:var(--gold-hi)}
+  .sheet .amt{color:var(--muted);font-size:.9rem;margin-top:4px}
+  .sheet .amt strong{color:var(--text)}
+
+  .qr-frame{
+    margin:18px auto 10px;
+    padding:10px;
+    border-radius:18px;
+    background:linear-gradient(145deg,var(--gold-hi),#A9843F);
+    width:min(290px,100%);
+  }
+  .qr-frame img{border-radius:10px;width:100%;height:auto;aspect-ratio:1}
+  .hint{font-size:.8rem;color:var(--muted)}
+
+  .actions{display:grid;gap:10px;margin-top:18px}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    min-height:50px;border-radius:12px;cursor:pointer;
+    font:600 .95rem var(--body);text-decoration:none;
+    transition:filter .18s ease, transform .18s ease, background .18s ease;
+  }
+  .btn:active{transform:scale(.98)}
+  .btn svg{width:20px;height:20px;flex:none}
+  .btn-primary{border:0;color:var(--ink);background:linear-gradient(180deg,var(--gold-hi),var(--gold))}
+  .btn-primary:hover{filter:brightness(1.06)}
+  .btn-ghost{border:1.5px solid var(--gold);color:var(--gold-hi);background:transparent}
+  .btn-ghost:hover{background:rgba(217,183,110,.1)}
+
+  .toast{
+    position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:60;
+    transform:translate(-50%,20px);opacity:0;
+    background:var(--cream);color:var(--ink);font-weight:600;font-size:.88rem;
+    padding:12px 18px;border-radius:999px;pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:420px){
+    .wrap{padding:32px 12px 48px}
+    .ticket{border-radius:14px}
+    .tear::before,.tear::after{width:16px;height:16px}
+    .tear::before{left:-9px}.tear::after{right:-9px}
+    .inc-grid{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header>
+    <svg class="crest" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+      <path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5L3 8z"/>
+    </svg>
+    <h1>VIP Channels</h1>
+    <p class="sub">Pick a package, scan to pay, then send your receipt.</p>
+  </header>
+
+  <section class="grid" aria-label="Packages">
+    <!-- PACKAGE A -->
+    <article class="ticket">
+      <div class="pkg">Package A</div>
+      <div class="count">20</div>
+      <div class="count-label">VIP Channels</div>
+      <div class="tear" aria-hidden="true"><span></span></div>
+      <div class="lower">
+        <div class="price">₱250<small>one-time only</small></div>
+        <button class="buy" data-pkg="Package A" data-desc="20 VIP Channels" data-price="₱250">Buy now</button>
+      </div>
+    </article>
+
+    <!-- PACKAGE B -->
+    <article class="ticket featured">
+      <div class="pkg">Package B</div>
+      <div class="count">50</div>
+      <div class="count-label">VIP Channels</div>
+      <div class="tear" aria-hidden="true"><span></span></div>
+      <div class="lower">
+        <div class="price">₱500<small>one-time only</small></div>
+        <button class="buy" data-pkg="Package B" data-desc="50 VIP Channels" data-price="₱500">Buy now</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= INCLUSIONS (edit here) =================
+       One list for both packages. Add items as <li>Your text</li>.
+  ============================================================ -->
+  <section class="inclusions" aria-labelledby="inc-title">
+    <h2 id="inc-title">Inclusions</h2>
+    <div class="inc-col">
+      <ul>
+        <li>PASTE YOUR INCLUSION HERE</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>Payments via InstaPay. Transfer fees may apply.</footer>
+</main>
+
+<!-- ================= QR POPUP ================= -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title" aria-hidden="true">
+  <div class="sheet">
+    <button class="close" id="closeBtn" aria-label="Close">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h3 id="m-title">Package A</h3>
+    <p class="amt"><span id="m-desc">20 VIP Channels</span> · Pay <strong id="m-price">₱250</strong></p>
+
+    <div class="qr-frame">
+      <img id="qrImg" src="qr.png" alt="InstaPay QR code for payment" width="1202" height="1202">
+    </div>
+    <p class="hint">Scan with any InstaPay-enabled bank or e-wallet app.</p>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="saveBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Save to Photos
+      </button>
+      <!-- ============ SEND HERE LINK (edit the href) ============ -->
+      <a class="btn btn-ghost" id="sendBtn" href="https://t.me/boldngpinas2k" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Send Here
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  /* ==========================================================
+     PUT YOUR "SEND HERE" LINK BELOW (Telegram, Messenger, etc.)
+     e.g. "https://t.me/yourusername"
+     ========================================================== */
+  const SEND_HERE_LINK = "https://t.me/boldngpinas2k";
+
+  const modal   = document.getElementById('modal');
+  const closeBtn= document.getElementById('closeBtn');
+  const saveBtn = document.getElementById('saveBtn');
+  const sendBtn = document.getElementById('sendBtn');
+  const toastEl = document.getElementById('toast');
+  let lastFocus = null;
+
+  if (SEND_HERE_LINK && SEND_HERE_LINK !== "#") sendBtn.href = SEND_HERE_LINK;
+  sendBtn.addEventListener('click', e => {
+    if (sendBtn.getAttribute('href') === '#') { e.preventDefault(); toast('Send link not set yet'); }
+  });
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toast.t);
+    toast.t = setTimeout(() => toastEl.classList.remove('show'), 2200);
+  }
+
+  function openModal(btn){
+    document.getElementById('m-title').textContent = btn.dataset.pkg;
+    document.getElementById('m-desc').textContent  = btn.dataset.desc;
+    document.getElementById('m-price').textContent = btn.dataset.price;
+    lastFocus = btn;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => closeBtn.focus(), 50);
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.buy').forEach(b => b.addEventListener('click', () => openModal(b)));
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  /* Save to Photos: share sheet on phones (has "Save Image"), download elsewhere */
+  saveBtn.addEventListener('click', async () => {
+    try {
+      const res  = await fetch('qr.png');
+      const blob = await res.blob();
+      const file = new File([blob], 'InstaPay-QR.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ files: [file], title: 'InstaPay QR' });
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'InstaPay-QR.png';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      toast('QR saved');
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+      toast('Long-press the QR to save it');
+    }
+  });
+</script>
+</body>
+</html>
